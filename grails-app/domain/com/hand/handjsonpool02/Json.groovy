@@ -7,8 +7,8 @@ class Json {
         placeholderUrl()
         method(inList:["POST","DELETE","PUT","GET"])
         jsonData()
-	dateCreated()
-	lastUpdated()
+		dateCreated()
+		lastUpdated()
     }
     Integer id
     String placeholderUrl
@@ -18,7 +18,7 @@ class Json {
     Date dateCreated
     Date lastUpdated
     String toString(){
-        "${id},${placeholderUrl}"
+        "${placeholderUrl}"
     }
 	static belongsTo=[project:Project]
 }

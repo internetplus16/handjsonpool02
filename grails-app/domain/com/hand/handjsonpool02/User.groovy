@@ -7,6 +7,7 @@ class User {
     String phone
     Date dateCreated
     Date lastUpdated
+	String role="user"
 	
     static constraints = {
         id(blank:false)
@@ -17,12 +18,21 @@ class User {
         lastUpdated()
     }
 	
+	boolean isAdmin(){
+		return role=="admin"
+	}
+	
     String toString(){
         "${loginName}"
     }
 	
-	//def beforeInsert={
-		//password=password.encodeAsSHA()
-	//}
+	def beforeInsert={
+		password=password.encodeAsSHA()
+	}
+	
+	def beforeUpdate={
+		password=password.encodeAsSHA()
+	}
+	
 	static hasMany=[projects:Project]
 }

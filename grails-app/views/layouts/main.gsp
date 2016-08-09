@@ -12,16 +12,29 @@
 		<link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon">
 		<link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">
 		<link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">
+		<link href="${resource(dir:'css',file:'bootstrap.css')}" rel="stylesheet" />
+		<link href="${resource(dir:'css',file:'jumbotron-narrow.css')}" rel="stylesheet" />
   		<asset:stylesheet src="application.css"/>
 		<asset:javascript src="application.js"/>
 		<g:layoutHead/>
+		<style>
+			.nav li a{
+				font-family:Arial;
+				font-size:17px;
+				font-weight:bolder;
+			} 
+			.nav li a:hover{
+				color:#FFF;
+				background-color:	#337ab7;
+			}
+		</style>
 	</head>
 	<body>
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a>
-		<g:loginControl/>
-		</div>
+		<!--<div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a></div>-->
+		<g:render template="/layouts/header"/>
 		<g:layoutBody/>
-		<div class="footer" role="contentinfo"></div>
-		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
+		<g:render template="/layouts/footer"/>
+		<!--<div class="footer" role="contentinfo"></div>
+		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>-->
 	</body>
 </html>

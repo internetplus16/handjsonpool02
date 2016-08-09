@@ -6,16 +6,28 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'json.label', default: 'Json')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		<style>
+			.btn:hover {
+				background-color:#337ab7;
+				color:#FFF;
+			}
+			.btn-default{
+				color:#337ab7;
+				font-weight:bolder;
+			}
+		</style>
 	</head>
 	<body>
+	<div class="container">
 		<a href="#show-json" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
+		<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/')}">
+				<span class=""></span><g:message code="default.home.label"/></a>
+				
+		<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/json')}">
+				<span class=""></span><g:message code="default.list.label" args="[entityName]" /></a>
+				
+		<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/json/create')}">
+				<span class=""></span><g:message code="default.new.label" args="[entityName]" /></a>
 		<div id="show-json" class="content scaffold-show" role="main">
 			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
@@ -50,6 +62,15 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${jsonInstance?.project}">
+				<li class="fieldcontain">
+					<span id="project-label" class="property-label"><g:message code="json.project.label" default="Project" /></span>
+					
+						<span class="property-value" aria-labelledby="project-label"><g:link controller="project" action="show" id="${jsonInstance?.project?.id}">${jsonInstance?.project?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${jsonInstance?.dateCreated}">
 				<li class="fieldcontain">
 					<span id="dateCreated-label" class="property-label"><g:message code="json.dateCreated.label" default="Date Created" /></span>
@@ -68,15 +89,6 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${jsonInstance?.project}">
-				<li class="fieldcontain">
-					<span id="project-label" class="property-label"><g:message code="json.project.label" default="Project" /></span>
-					
-						<span class="property-value" aria-labelledby="project-label"><g:link controller="project" action="show" id="${jsonInstance?.project?.id}">${jsonInstance?.project?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
 			</ol>
 			<g:if test="${session.user.toString()==jsonInstance.project.user.toString()}">
 				<g:form url="[resource:jsonInstance, action:'delete']" method="DELETE">
@@ -86,8 +98,7 @@
 					</fieldset>
 				</g:form>
 			</g:if>
-			
-		
 		</div>
+	</div>
 	</body>
 </html>

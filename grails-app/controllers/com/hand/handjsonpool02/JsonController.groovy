@@ -42,6 +42,13 @@ class JsonController {
             respond jsonInstance.errors, view:'create'
             return
         }
+		
+		if(jsonInstance.project.user.toString()!=session.user.toString())
+		{
+            redirect(action:"create")
+			flash.message = "You must choose yourself as the user!"
+			return
+		}
 
         jsonInstance.save flush:true
 

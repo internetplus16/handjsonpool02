@@ -34,7 +34,14 @@ class ProjectController {
             respond projectInstance.errors, view:'create'
             return
         }
-
+		
+		if(projectInstance.user.toString()!=session.user.toString())
+		{
+            redirect(action:"create")
+			flash.message = "You must choose yourself as the user!"
+			return
+		}
+		
         projectInstance.save flush:true
 
         request.withFormat {

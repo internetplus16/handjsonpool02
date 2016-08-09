@@ -6,20 +6,50 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'project.label', default: 'Project')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
+		<style>
+			#ha{
+				width:80%;
+				float:left;
+			}
+			#ba{
+				width:15%;
+				float:left;
+			}
+			#ba button{
+				margin-top:1px;
+			}
+			.nav2{
+				width:700px;
+			}
+			.btn:hover {
+				background-color:#337ab7;
+				color:#FFF;
+			}
+			.btn-default{
+				color:#337ab7;
+				font-weight:bolder;
+			}
+	</style>
 	</head>
 	<body>
+	<div class="container">
 		<a href="#list-project" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="list-project" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-				<div class="message" role="status">${flash.message}</div>
-			</g:if>
+		<div class="nav2" role="navigation">
+			<div id="up">
+				<div id="ha">
+					<h1><g:message code="default.list.label" args="[entityName]" /></h1>
+					<g:if test="${flash.message}">
+					<div class="message" role="status">${flash.message}</div>
+					</g:if>
+				</div>
+				<div id="ba">
+					<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/project/create')}">
+						<span class=""></span><g:message code="default.new.label" args="[entityName]" /></a>
+				
+					<!--	<div id="list-user" class="content scaffold-list" role="main">  -->
+				</div>
+			
+			</div>
 			<table>
 			<thead>
 					<tr>
@@ -37,26 +67,27 @@
 					</tr>
 				</thead>
 				<tbody>
-				<g:each in="${projectInstanceList}" status="i" var="projectInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+					<g:each in="${projectInstanceList}" status="i" var="projectInstance">
+						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${projectInstance.id}">${fieldValue(bean: projectInstance, field: "projectName")}</g:link></td>
-					
-						<td>${fieldValue(bean: projectInstance, field: "description")}</td>
-					
-						<td>${fieldValue(bean: projectInstance, field: "user")}</td>
-					
-						<td><g:formatDate date="${projectInstance.dateCreated}" /></td>
-					
-						<td><g:formatDate date="${projectInstance.lastUpdated}" /></td>
-					
-					</tr>
-				</g:each>
+							<td><g:link action="show" id="${projectInstance.id}">${fieldValue(bean: projectInstance, field: "projectName")}</g:link></td>
+						
+							<td>${fieldValue(bean: projectInstance, field: "description")}</td>
+						
+							<td>${fieldValue(bean: projectInstance, field: "user")}</td>
+						
+							<td><g:formatDate date="${projectInstance.dateCreated}" /></td>
+						
+							<td><g:formatDate date="${projectInstance.lastUpdated}" /></td>
+						
+						</tr>
+					</g:each>
 				</tbody>
 			</table>
-			<div class="pagination">
-				<g:paginate total="${projectInstanceCount ?: 0}" />
-			</div>
+				<div class="pagination">
+					<g:paginate total="${projectInstanceCount ?: 0}" />
+				</div>
 		</div>
+	</div>	
 	</body>
 </html>

@@ -61,6 +61,19 @@ class UserController {
             respond userInstance.errors, view:'edit'
             return
         }
+		
+		if(params.oldPassword.encodeAsSHA()!=session.user.password)
+		{
+			redirect(action:"edit",id:params.id)
+			flash.message = "The old password is wrong!"
+			return
+		}
+		
+		if(params.password!=params.confirmPassword){
+			redirect(action:"edit",id:params.id)
+			flash.message = "Your confirm password must be the same as the new password!"
+			return
+		}
 
         userInstance.save flush:true
 
@@ -101,7 +114,7 @@ class UserController {
             '*'{ render status: NOT_FOUND }
         }
     }
-	def register={}
+	
 	def login={}
 	def logout={
 		flash.message="Goodbye${session.user.loginName}"
@@ -109,15 +122,23 @@ class UserController {
 		redirect(action:"login")
 	}
 	def authenticate={
-		def user=User.findByLoginNameAndPassword(params.loginName,params.password)
+		def user=User.findByLoginNameAndPassword(params.loginName,params.password.encodeAsSHA())
 		if(user){
 			session.user=user
 			flash.message="Hello ${user.loginName}!"
-			redirect(controller:"Json",action:"index")
+			if(session?.user?.admin){
+				redirect(controller:"admin",action:"index")
+			}
+			else{
+				redirect(controller:"project",action:"index")	
+			}	
 		}
 		else{
 			flash.message="Sorry,${params.loginName}.Please try again."
 			redirect(action:"login")
 		}
+	}
+	def sub={
+		redirect(url:params.urll)
 	}
 }

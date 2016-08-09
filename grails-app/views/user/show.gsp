@@ -6,16 +6,39 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'user.label', default: 'User')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		<style>
+			.btn btn-default btn-lg  a{
+				font-family:italic;
+			}
+			.btn:hover {
+				background-color:#337ab7;
+				color:#FFF;
+			}
+			.btn-default{
+				color:#337ab7;
+				font-weight:bolder;
+			}
+		</style>
 	</head>
 	<body>
+	<div class="container">
+	
+		<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+		
 		<a href="#show-user" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+		
+			<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/')}">
+				<span class=""></span><g:message code="default.home.label"/></a>
+				
+			<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/user')}">
+				<span class=""></span><g:message code="default.list.label" args="[entityName]" /></a>
+				
+			<!--<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/user/create')}">
+				<span class=""></span><g:message code="default.new.label" args="[entityName]" /></a>
+			
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
+			-->
+			
 		<div id="show-user" class="content scaffold-show" role="main">
 			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
@@ -80,12 +103,16 @@
 				</g:if>
 			
 			</ol>
-			<g:form url="[resource:userInstance, action:'delete']" method="DELETE">
-				<fieldset class="buttons">
-					<g:link class="edit" action="edit" resource="${userInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
+			
+			<g:if test="${session.user.toString()==userInstance.loginName||session?.user?.admin}">
+				<g:form url="[resource:userInstance, action:'delete']" method="DELETE">
+					<fieldset class="buttons">
+						<g:link class="edit" action="edit" resource="${userInstance}">Change Password</g:link>
+						<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+					</fieldset>
+				</g:form>
+			</g:if>
 		</div>
+	</div>
 	</body>
 </html>

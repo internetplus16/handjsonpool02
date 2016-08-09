@@ -1,47 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<meta http-equlv="Content-Type" content="text/html;charset=UTF-8"/>
-		<meta name="layout" content="main"/>
-		<title>Login</title>
+		    <meta charset="utf-8">
+		    <meta name="layout" content="main">
+		    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		    <meta name="viewport" content="width=device-width, initial-scale=1">
+		    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		    <meta name="description" content="">
+		    <meta name="author" content="">
+
+		    <title>Signin Template for Bootstrap</title>
+		    <!-- Bootstrap core CSS -->
+			<link href="${resource(dir:'css',file:'bootstrap.css')}" rel="stylesheet" />
+			<link href="${resource(dir:'css',file:'bootstrap.min.css')}" rel="stylesheet" />
+
+		    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+		    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+		    <script src="${resource(dir:'css',file:'ie-emulation-modes-warning.js')}"></script>
+			
+
+		    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		    <!--[if lt IE 9]>
+		      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		    <![endif]-->
+	
+
 	</head>
-	<body>
-		<div class="body">
-			<h1>Login</h1>
+	
+
+  <body>
+
+		<div class="container">
 			<g:if test="${flash.message}">
 				<div class="message">${flash.message}</div>
 			</g:if>
 			
-			<g:form action="authenticate" method="post">
-				<div class="dialog">
-					<table>
-						<tbody>
-							<tr class="prop">
-								<td valign="top" class="name">
-									<label for="login">Login:</label>
-								</td>
-								<td valign="top">
-									<input type="text" id="login" name="loginName"/>
-								</td>
-							</tr>
-							<tr class="prop">
-								<td valign="top" class="name">
-									<label for="password">Password:</label>
-								</td>
-								<td valign="top">
-									<input type="password" id="password" name="password"/>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+			<g:form action="authenticate" method="post" class="form-signin">
+				<h2 class="form-signin-heading">Please sign in</h2>
+				<label for="inputEmail" class="sr-only">LoginName</label>
+					<input type="text" id="inputEmail" class="form-control" placeholder="LoginName" required autofocus name="loginName">
+				<label for="inputPassword" class="sr-only">Password</label>
+					<input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="password">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="remember-me"> Remember me
+					</label>
 				</div>
-				<div class="buttons">
-					<span class="button">
-						<input type="submit" value="Login"/>
-					</span>
-				</div>
-			</g:form>
-		</div>
-	</body>
+				<button class="btn btn-lg btn-primary btn-block" type="submit" >Sign in</button>
+		      </g:form>
+
+		</div> <!-- /container -->
+	<script src="D:/handjsonpool02/grails-app/assets/stylesheets/ie10-viewport-bug-workaround.js"></script>
+
+  </body>
 </html>
-		
