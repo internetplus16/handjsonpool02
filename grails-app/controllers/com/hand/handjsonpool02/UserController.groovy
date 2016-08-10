@@ -139,6 +139,6 @@ class UserController {
 		}
 	}
 	def sub={
-		redirect(url:params.urll)
+		redirect(url:"/json/"+params.urll)
 	}
 }

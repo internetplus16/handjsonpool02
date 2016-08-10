@@ -54,7 +54,7 @@
 			<thead>
 					<tr>
 					
-						<g:sortableColumn property="placeholderUrl" title="${message(code: 'json.placeholderUrl.label', default: 'Placeholder Url')}" />
+						<g:sortableColumn property="placeholderUrl" title="${message(code: 'json.placeholderUrl.label', default: 'Placeholder')}" />
 					
 						<g:sortableColumn property="method" title="${message(code: 'json.method.label', default: 'Method')}" />
 					
@@ -88,10 +88,9 @@
 				</g:each>
 				</tbody>
 			</table>
-			<!--<div class="pagination">
+			<div class="pagination">
 				<g:paginate total="${jsonInstanceCount ?: 0}" />
 			</div>
-			-->
 		</div>
 	</div>
 	</body>

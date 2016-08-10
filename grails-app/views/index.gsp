@@ -37,7 +37,7 @@
 		<script>
 			function urlCheck(){
 				var str=document.forms["myform"]["urll"].value;
-				var patt=new RegExp("\\http://localhost:8080/handjsonpool02/json/?/?/?");
+				var patt=new RegExp("\\/?/?/?");
 				var n=str.search(patt);
 				if(n<0){
 					alert("Your url is wrong!");
@@ -55,7 +55,7 @@
 				<p class="lead">The handjsonpool is a wonderful tool to help you obtain and store json data.Just type the URL and click the "enter",you'll get it.It's easy to use,come on to register and you'll fall into the pool.</p>
 				<p><a class="btn btn-lg btn-success" href="${createLink(uri: '/user/login')}" role="button">Login Now</a></p>
 				<p class="text-muted" style="font-size:18px;">
-					You can input your url below,then you`ll get your json data.<br>For example:http://www.baidu.com.
+					You can input your placeholder url below,then you`ll get your json data.<br>For example:pro1/jane/PUT
 				</p>
 				<g:form controller="user" action="sub" class="form-inline" method="post" name="myform" onsubmit="return urlCheck()" > 
 					<input type="text" class="form-control" placeholder="Your url" style="width:500px;" name="urll" required="required"> 

@@ -126,7 +126,7 @@
 					<g:if test="${session.user.toString()==userInstance.loginName}">
 						<g:link class="btn btn-default" action="edit" resource="${userInstance}">Change Password</g:link>
 					</g:if>
-					<g:if test="${session?.user?.admin}">
+					<g:if test="${session?.user?.admin && userInstance.loginName!="admin"}">
 						<g:actionSubmit class="btn btn-default" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 					</g:if>
 				</fieldset>

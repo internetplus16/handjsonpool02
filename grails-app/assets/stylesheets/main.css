@@ -416,6 +416,8 @@ table {
 	width: 100%;
 	margin-bottom: 1em;
 	table-layout:fixed;
+	word-break:break-all; //自动换行
+	word-wrap:break-all;//自动换行
 }
 
 tr {
@@ -433,8 +435,8 @@ tr>td:last-child, tr>th:last-child {
 td, th {
 	line-height: 1.5em;
 	padding: 0.5em 0.6em;
-	text-align: left;
-	vertical-align: top;
+	text-align: center;
+	//vertical-align: top;
 	overflow:hidden;
 }
 
@@ -500,10 +502,10 @@ th:hover, tr:hover {
 	margin: 0;
 	padding: 0.3em 0.2em;
 	text-align: center;
-	   -moz-box-shadow: 0 0 3px 1px #AAAAAA;
-	-webkit-box-shadow: 0 0 3px 1px #AAAAAA;
-	        box-shadow: 0 0 3px 1px #AAAAAA;
-	background-color: #EFEFEF;
+	   //-moz-box-shadow: 0 0 3px 1px #AAAAAA;
+	//-webkit-box-shadow: 0 0 3px 1px #AAAAAA;
+	        //box-shadow: 0 0 3px 1px #AAAAAA;
+	//background-color: #EFEFEF;
 }
 
 .pagination a,
@@ -513,9 +515,9 @@ th:hover, tr:hover {
 	margin: 0 0.1em;
 	padding: 0.25em 0.7em;
 	text-decoration: none;
-	   -moz-border-radius: 0.3em;
-	-webkit-border-radius: 0.3em;
-	        border-radius: 0.3em;
+	   //-moz-border-radius: 0.3em;
+	//-webkit-border-radius: 0.3em;
+	       // border-radius: 0.3em;
 }
 
 .pagination a:hover, .pagination a:focus,
