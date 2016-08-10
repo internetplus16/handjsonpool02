@@ -9,9 +9,13 @@
 				  <li role="presentation" >
 				  
 				  <g:loginControl/>
-				  
+					<ul>
+						<li>
+							<g:logoutControl/>
+						</li>
+					</ul>
 				  </li>
-				  <li role="presentation" ><a href="${resource(dir:'/user/create')}" >Sign up</a></li>
+				  <li role="presentation" ><a href="${resource(dir:'/user/create')}" >Register</a></li>
 			  </ul>
 			</nav>
 	      </div>

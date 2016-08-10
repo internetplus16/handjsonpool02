@@ -23,10 +23,10 @@
 	<body>
 	<div class="container">
 	
-		<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 		
-		<a href="#show-user" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		
+			<a href="#show-user" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+		<g:if test="${session?.user?.admin}">
 			<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/')}">
 				<span class=""></span><g:message code="default.home.label"/></a>
 				
@@ -38,7 +38,7 @@
 			
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			-->
-			
+		</g:if>	
 		<div id="show-user" class="content scaffold-show" role="main">
 			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
@@ -104,14 +104,18 @@
 			
 			</ol>
 			
-			<g:if test="${session.user.toString()==userInstance.loginName||session?.user?.admin}">
-				<g:form url="[resource:userInstance, action:'delete']" method="DELETE">
-					<fieldset class="buttons">
+			
+			<g:form url="[resource:userInstance, action:'delete']" method="DELETE">
+				<fieldset class="buttons">
+					<g:if test="${session.user.toString()==userInstance.loginName}">
 						<g:link class="edit" action="edit" resource="${userInstance}">Change Password</g:link>
+					</g:if>
+					<g:if test="${session?.user?.admin}">
 						<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-					</fieldset>
-				</g:form>
-			</g:if>
+					</g:if>
+				</fieldset>
+			</g:form>
+			
 		</div>
 	</div>
 	</body>

@@ -22,15 +22,17 @@
 	<body>
 	<div class="container">
 		<a href="#edit-user" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		
-			<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/')}">
-				<span class=""></span><g:message code="default.home.label"/></a>
+			<g:if test="${session?.user?.admin}">
+				<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/')}">
+					<span class=""></span><g:message code="default.home.label"/></a>
+					
+				<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/user')}">
+					<span class=""></span><g:message code="default.list.label" args="[entityName]" /></a>
+					
+				<!--<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/user/create')}">
+					<span class=""></span><g:message code="default.new.label" args="[entityName]" /></a>-->
+			</g:if>
 				
-			<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/user')}">
-				<span class=""></span><g:message code="default.list.label" args="[entityName]" /></a>
-				
-			<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/user/create')}">
-				<span class=""></span><g:message code="default.new.label" args="[entityName]" /></a>
 		<div id="edit-user" class="content scaffold-edit" role="main">
 			<h1>Change Password</h1>
 			

@@ -40,10 +40,9 @@
 	<div class="container">
 	
 		<div class="jumbotron">
-				<span class="glyphicon glyphicon-ice-lolly-tasted" ></span>
 				<h1>Hand Json Pool</h1>
 				<p class="lead">The handjsonpool is a wonderful tool to help you obtain and store json data.Just type the URL and click the "enter",you'll get it.It's easy to use,come on to register and you'll fall into the pool.</p>
-				<p><a class="btn btn-lg btn-success" href="${createLink(uri: '/user/login')}" role="button">Sign up today</a></p>
+				<p><a class="btn btn-lg btn-success" href="${createLink(uri: '/user/login')}" role="button">Login Now</a></p>
 				<p class="text-muted" style="font-size:18px;">
 					You can input your url below,then you`ll get your json data.<br>For example:http://www.baidu.com.
 				</p>

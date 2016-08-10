@@ -153,6 +153,24 @@ img {
 	padding: 0;
 }
 
+.nav li a{
+	color:#337ab7;
+}
+
+.nav li ul li{
+	text-align:center;
+}
+
+.nav li ul li a{
+	font-weight:normal;
+	text-decoration:underline;
+}
+.nav li ul li a:hover{
+	background:#ffffff;
+	color:#337ab7;
+	font-weight:bold;
+}
+
 .nav a {
 	color:black;
 	display: block;
@@ -421,9 +439,9 @@ td, th {
 }
 
 th {
-	background-color: #efefef;
-	background-image: -moz-linear-gradient(top, #ffffff, #eaeaea);
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ffffff), color-stop(1, #eaeaea));
+	//background-color: #efefef;
+	//background-image: -moz-linear-gradient(top, #ffffff, #eaeaea);
+	//background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ffffff), color-stop(1, #eaeaea));
 	    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = '#ffffff', EndColorStr = '#eaeaea');
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#eaeaea')";
 	color: #666666;
@@ -518,12 +536,12 @@ th:hover, tr:hover {
 /* ACTION BUTTONS */
 
 .buttons {
-	background-color: #efefef;
+	//background-color: #efefef;
 	overflow: hidden;
 	padding: 0.3em;
-	   -moz-box-shadow: 0 0 3px 1px #aaaaaa;
-	-webkit-box-shadow: 0 0 3px 1px #aaaaaa;
-	        box-shadow: 0 0 3px 1px #aaaaaa;
+	   //-moz-box-shadow: 0 0 3px 1px #aaaaaa;
+	//-webkit-box-shadow: 0 0 3px 1px #aaaaaa;
+	        //box-shadow: 0 0 3px 1px #aaaaaa;
 	margin: 0.1em 0 0 0;
 	border: none;
 }
@@ -601,4 +619,3 @@ a.skip {
 .form-control{
 	width:300px;
 }
-

@@ -22,10 +22,9 @@
 	</head>
 	<body>
 	<div class="container">
-		<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 		<a href="#show-user" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-			<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/')}">
-				<span class=""></span><g:message code="default.home.label"/></a>
+			<!--<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/')}">
+				<span class=""></span><g:message code="default.home.label"/></a>-->
 				
 			<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/project')}">
 				<span class=""></span><g:message code="default.list.label" args="[entityName]" /></a>

@@ -130,7 +130,7 @@ class UserController {
 				redirect(controller:"admin",action:"index")
 			}
 			else{
-				redirect(controller:"project",action:"index")	
+				redirect(controller:"user",action:"show",id:user.id)	
 			}	
 		}
 		else{
