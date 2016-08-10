@@ -23,16 +23,32 @@
 		<!--<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/')}">
 				<span class=""></span><g:message code="default.home.label"/></a>-->
 				
-		<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/json')}">
-				<span class=""></span><g:message code="default.list.label" args="[entityName]" /></a>
+		<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/json')}"><g:message code="default.list.label" args="[entityName]" /></a>
 				
-		<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/json/create')}">
-				<span class=""></span><g:message code="default.new.label" args="[entityName]" /></a>
+		<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/json/create')}"><g:message code="default.new.label" args="[entityName]" /></a>
+		
 		<div id="show-json" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+		
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
+			
+			<h1>Json Data</h1>
+			<ol class="property-list json">
+				<g:if test="${jsonInstance?.jsonData}">
+					<li class="fieldcontain">
+						<!--<span id="jsonData-label" class="property-label"><g:message code="json.jsonData.label" default="Json Data" /></span>-->
+							<code>
+								<g:fieldValue bean="${jsonInstance}" field="jsonData"/>
+							</code>
+							
+						
+					</li>
+				</g:if>
+			</ol>
+			
+			<h1>Details</h1>
+			
 			<ol class="property-list json">
 			
 				<g:if test="${jsonInstance?.placeholderUrl}">
@@ -53,14 +69,7 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${jsonInstance?.jsonData}">
-				<li class="fieldcontain">
-					<span id="jsonData-label" class="property-label"><g:message code="json.jsonData.label" default="Json Data" /></span>
-					
-						<span class="property-value" aria-labelledby="jsonData-label"><g:fieldValue bean="${jsonInstance}" field="jsonData"/></span>
-					
-				</li>
-				</g:if>
+				
 			
 				<g:if test="${jsonInstance?.project}">
 				<li class="fieldcontain">
@@ -92,9 +101,9 @@
 			</ol>
 			<g:if test="${session.user.toString()==jsonInstance.project.user.toString()}">
 				<g:form url="[resource:jsonInstance, action:'delete']" method="DELETE">
-					<fieldset class="buttons">
-						<g:link class="edit" action="edit" resource="${jsonInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-						<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+					<fieldset>
+						<g:link class="btn btn-default" action="edit" resource="${jsonInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+						<g:actionSubmit class="btn btn-default" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 					</fieldset>
 				</g:form>
 			</g:if>

@@ -16,8 +16,9 @@ class JsonController {
 		for(j in Json.list(params)){
 			if(j.project.toString()==params.project.toString()){
 				if(j.project.user.toString()==params.user.toString()){
-					if(j.method.toString()==params.method.toString())
+					if(j.method.toString()==params.method.toString()){
 						render j.jsonData
+					}
 				}
 			}
 		}

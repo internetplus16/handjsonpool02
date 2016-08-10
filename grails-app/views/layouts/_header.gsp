@@ -8,7 +8,7 @@
 				  <li role="presentation" ><a href="${resource(dir:'')}"  >Home</a></li>
 				  <li role="presentation" >
 				  
-				  <g:loginControl/>
+				  <g:loginControl />
 					<ul>
 						<li>
 							<g:logoutControl/>

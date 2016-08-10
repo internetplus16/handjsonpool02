@@ -31,11 +31,30 @@
 				
 			<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/project/create')}">
 				<span class=""></span><g:message code="default.new.label" args="[entityName]" /></a>
+				
+				
 		<div id="show-project" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+			
+			
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
+			
+			<h1>Jsons</h1>
+			<ol class="property-list project">
+				<g:if test="${projectInstance?.jsons}">
+				<li class="fieldcontain">
+					<!--<span id="jsons-label" class="property-label"><g:message code="project.jsons.label" default="Jsons" /></span>-->
+					
+						<g:each in="${projectInstance.jsons}" var="j">
+						<span class="property-value" aria-labelledby="jsons-label"><g:link class="btn" controller="json" action="show" id="${j.id}">${j?.encodeAsHTML()}</g:link></span>
+						</g:each>
+					
+				</li>
+				</g:if>
+			</ol>
+			
+			<h1>Details</h1>
 			<ol class="property-list project">
 			
 				<g:if test="${projectInstance?.projectName}">
@@ -82,25 +101,13 @@
 					
 				</li>
 				</g:if>
-			
-				<g:if test="${projectInstance?.jsons}">
-				<li class="fieldcontain">
-					<span id="jsons-label" class="property-label"><g:message code="project.jsons.label" default="Jsons" /></span>
-					
-						<g:each in="${projectInstance.jsons}" var="j">
-						<span class="property-value" aria-labelledby="jsons-label"><g:link controller="json" action="show" id="${j.id}">${j?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
 			</ol>
 			
 			<g:if test="${session.user.toString()==projectInstance.user.toString()}">
 				<g:form url="[resource:projectInstance, action:'delete']" method="DELETE">
-					<fieldset class="buttons">
-						<g:link class="edit" action="edit" resource="${projectInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-						<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+					<fieldset >
+						<g:link class="btn btn-default" action="edit" resource="${projectInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+						<g:actionSubmit class="btn btn-default" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 					</fieldset>
 				</g:form>
 			</g:if>

@@ -27,8 +27,8 @@
 		
 			<a href="#show-user" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<g:if test="${session?.user?.admin}">
-			<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/')}">
-				<span class=""></span><g:message code="default.home.label"/></a>
+			<!--<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/')}">
+				<span class=""></span><g:message code="default.home.label"/></a>-->
 				
 			<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/user')}">
 				<span class=""></span><g:message code="default.list.label" args="[entityName]" /></a>
@@ -39,11 +39,37 @@
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			-->
 		</g:if>	
-		<div id="show-user" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
+		
+		<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/project')}">Project List</a>
+		
+		<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/json')}">Json List</a>
+		
+		<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/json/create')}" style="float:right">New Json</a>
+		
+		<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/project/create')}" style="float:right">New Project</a>
+		
+		<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
-			</g:if>
+		</g:if>
+			
+		<div id="show-user" class="content scaffold-show" role="main">
+			
+			<h1>Projects</h1>
+			<ol class="property-list user" style="font-size:16px;">
+				<g:if test="${userInstance?.projects}">
+				<li class="fieldcontain"style="font-size:16px;">
+					<!--<span id="projects-label" class="property-label"><g:message code="user.projects.label" default="Projects" /></span>-->
+					
+						<g:each in="${userInstance.projects}" var="p" >
+						<span class="property-value" aria-labelledby="projects-label"><g:link class="btn" controller="project" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
+						</g:each>
+					
+				</li>
+				</g:if>
+			</ol>
+			
+			<h1>Details</h1>
+			
 			<ol class="property-list user">
 			
 				<g:if test="${userInstance?.loginName}">
@@ -54,25 +80,27 @@
 					
 				</li>
 				</g:if>
-			
-				<g:if test="${userInstance?.password}">
-				<li class="fieldcontain">
-					<span id="password-label" class="property-label"><g:message code="user.password.label" default="Password" /></span>
-					
-						<span class="property-value" aria-labelledby="password-label"><g:fieldValue bean="${userInstance}" field="password"/></span>
-					
-				</li>
+				
+				<g:if test="${session.user.toString()==userInstance.loginName}">
+					<g:if test="${userInstance?.password}">
+					<li class="fieldcontain">
+						<span id="password-label" class="property-label"><g:message code="user.password.label" default="Password" /></span>
+						
+							<span class="property-value" aria-labelledby="password-label"><g:fieldValue bean="${userInstance}" field="password"/></span>
+						
+					</li>
+					</g:if>
+				
+					<g:if test="${userInstance?.phone}">
+					<li class="fieldcontain">
+						<span id="phone-label" class="property-label"><g:message code="user.phone.label" default="Phone" /></span>
+						
+							<span class="property-value" aria-labelledby="phone-label"><g:fieldValue bean="${userInstance}" field="phone"/></span>
+						
+					</li>
+					</g:if>
 				</g:if>
-			
-				<g:if test="${userInstance?.phone}">
-				<li class="fieldcontain">
-					<span id="phone-label" class="property-label"><g:message code="user.phone.label" default="Phone" /></span>
-					
-						<span class="property-value" aria-labelledby="phone-label"><g:fieldValue bean="${userInstance}" field="phone"/></span>
-					
-				</li>
-				</g:if>
-			
+				
 				<g:if test="${userInstance?.dateCreated}">
 				<li class="fieldcontain">
 					<span id="dateCreated-label" class="property-label"><g:message code="user.dateCreated.label" default="Date Created" /></span>
@@ -90,31 +118,25 @@
 					
 				</li>
 				</g:if>
-			
-				<g:if test="${userInstance?.projects}">
-				<li class="fieldcontain">
-					<span id="projects-label" class="property-label"><g:message code="user.projects.label" default="Projects" /></span>
-					
-						<g:each in="${userInstance.projects}" var="p">
-						<span class="property-value" aria-labelledby="projects-label"><g:link controller="project" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
+				
 			</ol>
 			
-			
 			<g:form url="[resource:userInstance, action:'delete']" method="DELETE">
-				<fieldset class="buttons">
+				<fieldset >
 					<g:if test="${session.user.toString()==userInstance.loginName}">
-						<g:link class="edit" action="edit" resource="${userInstance}">Change Password</g:link>
+						<g:link class="btn btn-default" action="edit" resource="${userInstance}">Change Password</g:link>
 					</g:if>
 					<g:if test="${session?.user?.admin}">
-						<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+						<g:actionSubmit class="btn btn-default" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 					</g:if>
 				</fieldset>
 			</g:form>
+			
+			
+			
+			
+			
+			
 			
 		</div>
 	</div>

@@ -26,7 +26,7 @@
 			.btn-sub{
 				wiith:60px;
 				height:33px;
-				border-radius:5px;
+				border-radius:7px;
 				background:#337ab7;
 				color:#ffffff;
 			}
@@ -34,6 +34,17 @@
 				background:#2e6da4;
 			}
 		</style>
+		<script>
+			function urlCheck(){
+				var str=document.forms["myform"]["urll"].value;
+				var patt=new RegExp("\\http://localhost:8080/handjsonpool02/json/?/?/?");
+				var n=str.search(patt);
+				if(n<0){
+					alert("Your url is wrong!");
+					return false;
+				}
+			}
+		</script>
 	</head>
 <body>
 	
@@ -46,8 +57,8 @@
 				<p class="text-muted" style="font-size:18px;">
 					You can input your url below,then you`ll get your json data.<br>For example:http://www.baidu.com.
 				</p>
-				<g:form controller="user" action="sub" class="form-inline" method="post">
-					<input type="text" class="form-control" placeholder="Your url" style="width:500px;" name="urll"> 
+				<g:form controller="user" action="sub" class="form-inline" method="post" name="myform" onsubmit="return urlCheck()" > 
+					<input type="text" class="form-control" placeholder="Your url" style="width:500px;" name="urll" required="required"> 
 					<input type="submit" value="Submit" class="btn-sub"/>
 				</g:form>
 		</div>
