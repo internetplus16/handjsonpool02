@@ -49,7 +49,9 @@
 <body>
 	
 	<div class="container">
-	
+		<g:if test="${flash.message}">
+			<div class="message" role="status">${flash.message}</div>
+		</g:if>
 		<div class="jumbotron">
 				<h1>Hand Json Pool</h1>
 				<p class="lead">The handjsonpool is a wonderful tool to help you obtain and store json data.Just type the URL and click the "enter",you'll get it.It's easy to use,come on to register and you'll fall into the pool.</p>

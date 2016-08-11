@@ -345,7 +345,8 @@ fieldset.embedded legend {
 .message {
 	font-size: 0.8em;
 	line-height: 2;
-	margin: 1em 2em;
+	margin-bottom: 1em;
+	margin-top: 1em;
 	padding: 0.25em;
 }
 

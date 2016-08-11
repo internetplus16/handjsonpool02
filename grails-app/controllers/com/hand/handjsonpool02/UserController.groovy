@@ -127,9 +127,6 @@ class UserController {
 			session.user=user
 			flash.message="Hello ${user.loginName}!"
 			if(session?.user?.admin){
-				redirect(controller:"admin",action:"index")
-			}
-			else{
 				redirect(controller:"user",action:"show",id:user.id)	
 			}	
 		}

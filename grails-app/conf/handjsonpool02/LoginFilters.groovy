@@ -30,5 +30,14 @@ class LoginFilters {
 				}
 			}
 		}
+		all(controller:"user",action:"login"){
+			before={
+				if(session.user){
+					redirect(url:"/")
+					flash.message="Sorry,you need logout first!"
+					return false
+				}
+			}
+		}
 	}
 }

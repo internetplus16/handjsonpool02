@@ -54,19 +54,26 @@
 			
 		<div id="show-user" class="content scaffold-show" role="main">
 			
-			<h1>Projects</h1>
-			<ol class="property-list user" style="font-size:16px;">
-				<g:if test="${userInstance?.projects}">
-				<li class="fieldcontain"style="font-size:16px;">
-					<!--<span id="projects-label" class="property-label"><g:message code="user.projects.label" default="Projects" /></span>-->
-					
-						<g:each in="${userInstance.projects}" var="p" >
-						<span class="property-value" aria-labelledby="projects-label"><g:link class="btn" controller="project" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			</ol>
+			<g:if test="${!(session?.user?.admin && userInstance.role=="admin")}">
+				<h1>Projects</h1>
+				<ol class="property-list user" style="font-size:16px;">
+					<g:if test="${userInstance?.projects}">
+					<li class="fieldcontain"style="font-size:16px;">
+						<!--<span id="projects-label" class="property-label"><g:message code="user.projects.label" default="Projects" /></span>-->
+						
+							<g:each in="${userInstance.projects}" var="p" >
+							<span class="property-value" aria-labelledby="projects-label"><g:link class="btn" controller="project" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
+							</g:each>
+						
+					</li>
+					</g:if>
+				</ol>
+			</g:if>
+			
+			<g:if test="${session?.user?.admin && userInstance.role=="admin"}">
+				<h1>Admin</h1>
+				<a type="button" class="btn btn-default btn-lg" href="${createLink(uri: '/admin')}" style="margin-left:230px;margin-top:10px;">Entry for Admin Center</a>
+			</g:if>
 			
 			<h1>Details</h1>
 			
@@ -126,7 +133,7 @@
 					<g:if test="${session.user.toString()==userInstance.loginName}">
 						<g:link class="btn btn-default" action="edit" resource="${userInstance}">Change Password</g:link>
 					</g:if>
-					<g:if test="${session?.user?.admin && userInstance.loginName!="admin"}">
+					<g:if test="${session?.user?.admin && userInstance.role!="admin"}">
 						<g:actionSubmit class="btn btn-default" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 					</g:if>
 				</fieldset>
